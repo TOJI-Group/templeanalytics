@@ -62,7 +62,7 @@ for row in csv_f:
 
 # Test that data is stored correctly
 n = 1
-#print "ID:" + customerlist[n].id + " State:" + customerlist[n].state + " ZipCode:" + customerlist[n].zipcode + " CustomerSegment:" + customerlist[n].segment
+#print( "ID:" + customerlist[n].id + " State:" + customerlist[n].state + " ZipCode:" + customerlist[n].zipcode + " CustomerSegment:" + customerlist[n].segment)
 
 
 # Lets get crazy and sort in place
@@ -70,7 +70,7 @@ import operator
 customerlist.sort(key=operator.attrgetter('id'))
 
 #for customer in customerlist:
-#	print "ID:%s State:%s Zipcode: %s" % (customer.id, customer.state, customer.zipcode)
+	#print( "ID:%s State:%s Zipcode: %s" % (customer.id, customer.state, customer.zipcode))
 
 f.close()
 
@@ -81,9 +81,9 @@ orderlist = []
 for row in csv_f:
 	orderlist.append(Order(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7]))
 
-#print "Order Number:" + orderlist[n].number + "\nOrder Line:" + orderlist[n].line + "\nCustomer ID:" + orderlist[n].customerid 
-#print "Product Number:" + orderlist[n].productnum + "\nPlatform:" + orderlist[n].platform + "\nDate:" + orderlist[n].date 
-#print "Time:" + orderlist[n].time + "\nAmount:" + orderlist[n].amount
+#print( "Order Number:" + orderlist[n].number + "\nOrder Line:" + orderlist[n].line + "\nCustomer ID:" + orderlist[n].customerid )
+#print( "Product Number:" + orderlist[n].productnum + "\nPlatform:" + orderlist[n].platform + "\nDate:" + orderlist[n].date) 
+#print( "Time:" + orderlist[n].time + "\nAmount:" + orderlist[n].amount)
 
 f.close()
 
@@ -94,8 +94,8 @@ for row in csv_f:
 	medialist.append(Media(row[0],row[1],row[2],row[3],row[4],row[5],row[6]))
 
 
-#print "Product Number:" + medialist[n].productid + "\nAir Date:" + medialist[n].date + "\nStart Time:" + medialist[n].starttime
-#print "End Time:" + medialist[n].endtime + "\nAirtime:" + medialist[n].airtime + "\nHost 1:" + medialist[n].host1
-#print "Host 2:" + medialist[n].host2
+#print( "Product Number:" + medialist[n].productid + "\nAir Date:" + medialist[n].date + "\nStart Time:" + medialist[n].starttime)
+#print( "End Time:" + medialist[n].endtime + "\nAirtime:" + medialist[n].airtime + "\nHost 1:" + medialist[n].host1)
+#print( "Host 2:" + medialist[n].host2)
 
 f.close()
