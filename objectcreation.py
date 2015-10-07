@@ -52,13 +52,8 @@ class Media(object):
 
 print
 
-
-# Set to 1 to enable prints
-DEBUG = 0
-
-
 import csv
-f = open('updated_customer_master.csv')
+f = open('customer_master.csv')
 csv_f = csv.reader(f)
 customerlist = []
 for row in csv_f:
@@ -67,51 +62,40 @@ for row in csv_f:
 
 # Test that data is stored correctly
 n = 1
+#print "ID:" + customerlist[n].id + " State:" + customerlist[n].state + " ZipCode:" + customerlist[n].zipcode + " CustomerSegment:" + customerlist[n].segment
+
 
 # Lets get crazy and sort in place
 import operator 
 customerlist.sort(key=operator.attrgetter('id'))
 
-if DEBUG:
-	print "         Contents of Customer List         "
-	print "-------------------------------------------"
-	for customer in customerlist:
-		print "ID:%s State:%s Zipcode: %s" % (customer.id, customer.state, customer.zipcode)
+#for customer in customerlist:
+#	print "ID:%s State:%s Zipcode: %s" % (customer.id, customer.state, customer.zipcode)
 
 f.close()
 
 
-
-
-f = open('updated_order_master.csv')
+f = open('order_master.csv')
 csv_f = csv.reader(f)
 orderlist = []
 for row in csv_f:
 	orderlist.append(Order(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7]))
 
-
-if DEBUG:
-	print "		Contents of Order List		  "
-	print "-------------------------------------------"
-	for order in orderlist:
-		print "Order Number:" + orderlist[n].number + "\nOrder Line:" + orderlist[n].line + "\nCustomer ID:" + orderlist[n].customerid 
-		print "Product Number:" + orderlist[n].productnum + "\nPlatform:" + orderlist[n].platform + "\nDate:" + orderlist[n].date 
-		print "Time:" + orderlist[n].time + "\nAmount:" + orderlist[n].amount
+#print "Order Number:" + orderlist[n].number + "\nOrder Line:" + orderlist[n].line + "\nCustomer ID:" + orderlist[n].customerid 
+#print "Product Number:" + orderlist[n].productnum + "\nPlatform:" + orderlist[n].platform + "\nDate:" + orderlist[n].date 
+#print "Time:" + orderlist[n].time + "\nAmount:" + orderlist[n].amount
 
 f.close()
 
-f = open('updated_product_airtime.csv')
+f = open('product_airtime.csv')
 csv_f = csv.reader(f)
 medialist = []
 for row in csv_f:
 	medialist.append(Media(row[0],row[1],row[2],row[3],row[4],row[5],row[6]))
 
-if DEBUG:
-	print "         Contents of Product List          "
-	print "-------------------------------------------"
-	for product in productlist:
-		print "Product Number:" + medialist[n].productid + "\nAir Date:" + medialist[n].date + "\nStart Time:" + medialist[n].starttime
-		print "End Time:" + medialist[n].endtime + "\nAirtime:" + medialist[n].airtime + "\nHost 1:" + medialist[n].host1
-		print "Host 2:" + medialist[n].host2
+
+#print "Product Number:" + medialist[n].productid + "\nAir Date:" + medialist[n].date + "\nStart Time:" + medialist[n].starttime
+#print "End Time:" + medialist[n].endtime + "\nAirtime:" + medialist[n].airtime + "\nHost 1:" + medialist[n].host1
+#print "Host 2:" + medialist[n].host2
 
 f.close()
