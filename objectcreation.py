@@ -53,7 +53,7 @@ class Media(object):
 print
 
 import csv
-f = open('customer_master.csv', 'rU')
+f = open('updated_customer_master.csv')
 csv_f = csv.reader(f)
 customerlist = []
 for row in csv_f:
@@ -75,7 +75,7 @@ customerlist.sort(key=operator.attrgetter('id'))
 f.close()
 
 
-f = open('order_master.csv')
+f = open('updated_order_master.csv')
 csv_f = csv.reader(f)
 orderlist = []
 for row in csv_f:
@@ -87,7 +87,7 @@ for row in csv_f:
 
 f.close()
 
-f = open('product_airtime.csv')
+f = open('updated_product_airtime.csv')
 csv_f = csv.reader(f)
 medialist = []
 for row in csv_f:
