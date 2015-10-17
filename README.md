@@ -22,11 +22,12 @@ processing easier. Will created updated files
 
 ## Project Requirements
 - Python 2.7 (Recommend: [Anaconda 2.7][])
-- [Bokeh v0.10.0][]
-- [us 0.9.1][]
+- [Plotly 1.8.6][]
+- [Pandas 0.17.0][]
 
 [Compeition Link]: http://ibit.temple.edu/analytics/
 [`run.py`]: /src/run.py
 [`filecleanup.py`]: /src/filecleanup.py
 [Anaconda 2.7]: https://www.continuum.io/downloads
 [Plotly 1.8.6]: https://plot.ly/
+[Pandas 0.17.0]: http://pandas.pydata.org/
