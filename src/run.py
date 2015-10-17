@@ -9,8 +9,7 @@ import numpy as np
 import pandas as pd
 # Plotly Graphing
 import plotly.plotly as py
-import plotly.graph_objs as go
-
+import cufflinks as cf
 
 def main(argv):
 
@@ -154,8 +153,13 @@ def main(argv):
     # - PLOT DATA - 
     # -------------
     logging.info("Plotting data...")
-        
-    # Define Figure
+    
+    
+    # Figure Attributes
+    #
+    cf.set_config_file(offline=False, world_readable=True, theme='ggplot')
+    
+    # Plot figure
     #
     customSub.iplot(kind='bar', filename='templeAnalytics2015/Revenue_vs_Product_Category')
     
