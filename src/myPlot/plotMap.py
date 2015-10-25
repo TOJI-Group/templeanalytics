@@ -76,6 +76,10 @@ def plot(rawData):
             'PRODUCT_CATEGORY', 'TOTAL_LINE_AMT']]
     grouped = grouped.groupby(['STATE', 'PRODUCT_CATEGORY']).sum()
     
+    # Round data
+    #
+    grouped['TOTAL_LINE_AMT'] = (np.round(grouped['TOTAL_LINE_AMT'],-2) \
+            / 1000000)
     # Pivot the categories to become column names
     #
     df = grouped.unstack(level=-1)
@@ -83,18 +87,19 @@ def plot(rawData):
     # Clean up unstacked table
     #
     df.columns = df.columns.get_level_values('PRODUCT_CATEGORY')
-    logging.debug(df) 
-    
+    logging.debug(df)
+
+    # Round to thousands
+    #
+    #np.round(df, -2)
+   # df.apply(int(np.round(-2)), axis=1)
+
     # Sum across the row and store in new column
     #
     stateTotRev = pd.DataFrame()
     stateTotRev['STATE_REV'] = df.sum(axis=1)
     logging.debug(stateTotRev)
 
-    #for category in pd.unique(grouped.PRODUCT_CATEGORY.ravel()):
-    #    df[category] = grouped.xs(category, level='PRODUCT_CATEGORY')
-    #
-    
     # Finish Organizing in data
     #        
     logging.info("Done querying data")
@@ -110,27 +115,40 @@ def plot(rawData):
             [0.6, 'rgb(158,154,200)'],
             [0.8, 'rgb(117,107,177)'],
             [1.0, 'rgb(84,39,143)']]
-
-    df['text'] = 'Accessories: $' + df['Accessories'].astype(str) + '<br>' +  \
-            'Apparel: $' + df['Apparel'].astype(str) + '<br>' + \
-            'Collectibles: $' + df['Collectibles'].astype(str) +  '<br>' + \
-            'Costume Jewelry: $' + df['Costume Jewelry'].astype(str) + '<br>' + \
-            'Electronics: $' + df['Electronics'].astype(str) + '<br>' + \
-            'Fun & Leisure: $' + df['Fun & Leisure'].astype(str) + '<br>' + \
-            'Gift Cards: $' + df['Gift Cards'].astype(str)  + '<br>' + \
-            'Health: $' + df['Health'].astype(str)  + '<br>' + \
-            'Health/Beauty: $' + df['Health/Beauty'].astype(str)  + '<br>' + \
-            'Home Decor: $' + df['Home Decor'].astype(str)  + '<br>' + \
-            'Housewares: $' + df['Housewares'].astype(str)  + '<br>' + \
-            'Jewelry: $' + df['Jewelry'].astype(str)  + '<br>' + \
-            'Textile/Furni: $'+ df['Textile/Furnit'].astype(str) 
+   
+    df['text'] = 'Accessories: $' + \
+            df['Accessories'].astype(str) + 'M <br>' +  \
+            'Apparel: $' + \
+            df['Apparel'].astype(str) + 'M <br>' + \
+            'Collectibles: $' + \
+            df['Collectibles'].astype(str) + 'M <br>' + \
+            'Costume Jewelry: $' + \
+            df['Costume Jewelry'].astype(str) + 'M <br>' + \
+            'Electronics: $' + \
+            df['Electronics'].astype(str) + 'M <br>' + \
+            'Fun & Leisure: $' + \
+            df['Fun & Leisure'].astype(str) + 'M <br>' + \
+            'Gift Cards: $' + \
+            df['Gift Cards'].astype(str)  + 'M <br>' + \
+            'Health: $' + \
+            df['Health'].astype(str)  + 'M <br>' + \
+            'Health/Beauty: $' + \
+            df['Health/Beauty'].astype(str)  + 'M <br>' + \
+            'Home Decor: $' + \
+            df['Home Decor'].astype(str)  + 'M <br>' + \
+            'Housewares: $' + \
+            df['Housewares'].astype(str)  + 'M <br>' + \
+            'Jewelry: $' + \
+            df['Jewelry'].astype(str)  + 'M <br>' + \
+            'Textile/Furni: $'+ \
+            df['Textile/Furnit'].astype(str) + 'M' 
     
     data = [ dict(
             type='choropleth',
             colorscale = scl,
             autocolorscale = False,
             locations = stateTotRev.index.values,
-            z = stateTotRev['STATE_REV'].astype(int),
+            z = (1000000*stateTotRev['STATE_REV']).astype(int),
             locationmode = 'USA-states',
             text = df['text'],
             marker = dict(

@@ -56,15 +56,15 @@ def main(argv):
     # From module plot, plot the desired plots
     # Create plot of revenue vs product category
     #
-    #plotRevenueCategory.plot(rawData)
+    plotRevenueCategory.plot(rawData)
 
     # Create plot of email campaing spenditure vs product category
     #
-    #plotEmailSpendCategory.plot(rawData)
+    plotEmailSpendCategory.plot(rawData)
     
     # Create pi chart of sales per category
     #
-    #plotSalesCategory.plot(rawData)
+    plotSalesCategory.plot(rawData)
 
     # Plot the map
     #
