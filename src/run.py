@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import operator
 import argparse
@@ -55,7 +56,7 @@ def main(argv):
     # From module plot, plot the desired plots
     # Create plot of revenue vs product category
     #
-    plotRevenueCategory.plot(rawData)
+    #plotRevenueCategory.plot(rawData)
 
     # Create plot of email campaing spenditure vs product category
     #
@@ -63,8 +64,11 @@ def main(argv):
     
     # Create pi chart of sales per category
     #
-    plotSalesCategory.plot(rawData)
+    #plotSalesCategory.plot(rawData)
 
+    # Plot the map
+    #
+    plotMap.plot(rawData)
     # Exit Gracefully
     #
     print("Program Finished successfully.")

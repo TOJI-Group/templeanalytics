@@ -22,6 +22,7 @@ All plotting functions reside in a package [`myPlot`][].
 [Compeition Link]: http://ibit.temple.edu/analytics/
 [`run.py`]: /src/run.py
 [`classes`]: /src/classes/
+[`rawFileOp.py`]: /src/classes/rawFileOp.py
 [`myPlot`]: /src/myPlot/
 [`filecleanup.py`]: /src/filecleanup.py
 [Anaconda 2.7]: https://www.continuum.io/downloads

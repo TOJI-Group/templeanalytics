@@ -117,7 +117,7 @@ class rawFileOp():
             #
             logging.info("Opening File: %s", social_filename)
             self.socialList = pd.read_csv(social_filename, \
-                    index_col='ORDER_NBR', parse_dates = True)
+                    parse_dates = True)
             logging.debug(self.socialList)
 
             # Close file
