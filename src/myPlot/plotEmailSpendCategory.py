@@ -6,7 +6,7 @@ import pandas as pd
 
 # Plotly Graphing
 import plotly.plotly as py
-import cufflinks as cf
+import plotly.graph_objs as go
 
 def plot(rawData):
     # Plotting template
@@ -47,9 +47,10 @@ def plot(rawData):
     # From the Table presumable created above, remove excess columns. Also
     # re-index a table to new column
     #
-    totalCATsales = rawData.emailCamp.groupby('PRODUCT_CATEGORY').aggregate(sum)
-    totalCATsalesedit = totalCATsales.drop('All')
-
+    totalCATsales = rawData.emailCamp.groupby('PRODUCT_CATEGORY').sum()
+    df = totalCATsales.drop('All')
+    
+    logging.debug(df)
     # Finish Organizing in data
     #        
     logging.info("Done querying data")
@@ -59,16 +60,32 @@ def plot(rawData):
     # -------------
     logging.info("Plotting...")
     
-
-    cf.set_config_file(world_readable=True, theme='ggplot')
-    totalCATsalesedit.iplot(kind='bar', 
-            filename="templeAnalytics2015/" \
-            "Email_Campaign_Spend_vs_Product_Category", 
-            title="Email Campaign Cost per Product Category")
-
+    # Plot Layout
+    #
+    layout = go.Layout(
+            title='Revenue per Product Category',
+            yaxis=dict(
+                title='Revenue (USD $)'
+            )
+    )
+    
+    # Define the figure using playout and data. Plot After
+    #
+    data = [
+            go.Bar(
+                x=df.index,
+                y=df['CAMPAIGN_SPEND']
+            )
+    ]
+    
+    fig = go.Figure(data=data,layout=layout)
+    url = py.plot(fig,
+            filename='templeAnalytics2015/' +
+            'Email_Campaign_Spend_vs_Product_Category') 
+     
     # Finish Plotting in data
     #   
-    logging.info("Done plotting product Revenue vs Product Category Plot")
+    logging.info("Done plotting Email Campaign vs Product Category Plot")
 
    
  

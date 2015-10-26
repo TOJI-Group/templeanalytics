@@ -172,7 +172,7 @@ def plot(rawData):
         ),
     )
                         
-    fig = dict( data=data, layout=layout )
+    fig = dict(data=data, layout=layout)
 
     url = py.plot( fig, filename='templeAnalytics2015/Sales_Map' )
     

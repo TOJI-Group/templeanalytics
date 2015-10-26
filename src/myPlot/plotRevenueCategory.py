@@ -6,7 +6,7 @@ import pandas as pd
 
 # Plotly Graphing
 import plotly.plotly as py
-import cufflinks as cf
+import plotly.graph_objs as go
 
 def plot(rawData):
     logging.info("Creating product Revenue vs Product Category Plot")
@@ -62,6 +62,11 @@ def plot(rawData):
     # Create Multi-Index Dataset
     #
     customSub = customSub.groupby('PRODUCT_CATEGORY').sum()
+
+    # Remove non-aplicable columns
+    #
+    customSub = customSub.drop(['Returns', 'PUBLIC RELATION'])
+    
     logging.debug(customSub)
     
     # Finish Organizing in data
@@ -73,15 +78,28 @@ def plot(rawData):
     # -------------
     logging.info("Plotting...")
      
-    # Figure Attributes
+    # Plot Layout
     #
-    cf.set_config_file(offline=False, world_readable=True, theme='ggplot')
+    layout = go.Layout(
+            title='Revenue per Product Category',
+            yaxis=dict(
+                title='Revenue (USD $)'
+            )
+    )
     
-    # Plot figure
+    # Define the figure using playout and data. Plot After
     #
-    customSub.iplot(kind='bar', 
-            filename='templeAnalytics2015/Revenue_vs_Product_Category')
+    data = [
+            go.Bar(
+                x=customSub.index,
+                y=customSub['TOTAL_LINE_AMT']
+            )
+    ]
     
+    fig = go.Figure(data=data,layout=layout)
+    url = py.plot(fig, 
+            filename='templeAnalytics2015/Revenue_vs_Product_Category')    
+                
     # Finish Plotting in data
     #   
     logging.info("Done plotting product Revenue vs Product Category Plot")

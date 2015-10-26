@@ -6,7 +6,6 @@ import pandas as pd
 
 # Plotly Graphing
 import plotly.plotly as py
-import cufflinks as cf
 
 # Plotting template file
 #
@@ -79,8 +78,7 @@ def plot(rawData):
         'type': 'pie'}],
         'layout': {'title': 'Percentage of Total Sales from Each Domain'}
     }
-    url = py.plot(fig, filename='templeAnalytics2015/Total_Sales_Breakdown', 
-        auto_open=False)
+    url = py.plot(fig, filename='templeAnalytics2015/Total_Sales_Breakdown')
 
     # Finish Plotting in data
     #   

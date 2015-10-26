@@ -6,7 +6,6 @@ import pandas as pd
 
 # Plotly Graphing
 import plotly.plotly as py
-import cufflinks as cf
 import plotly.graph_objs as go
 # Plotting template file
 #
@@ -56,20 +55,22 @@ def plot(rawData):
     # re-index a table to new column
     #
     timeSales = rawData.orderList[['ORDER_DATE','TOTAL_LINE_AMT']]
-    logging.debug(timeSales)
-    
-    #    grp = timeSales.groupby('ORDER_DATE')
-    #    logging.debug(grp)
     
     # Group Orders by their date
     #
     sumTimeSales = timeSales.groupby('ORDER_DATE',
             as_index=False).aggregate(sum)
     
+    # Remove date from 2014
+    #
+    sumTimeSales = sumTimeSales.ix[1:]
+
     # Round the toal Sales by Order Date
     #
     sumTimeSales['TOTAL_LINE_AMT'] =  np.round(
             sumTimeSales['TOTAL_LINE_AMT'], -2)
+    
+    
     logging.debug(sumTimeSales)
    
     # Finish Organizing in data
@@ -81,11 +82,28 @@ def plot(rawData):
     # -------------
     logging.info("Plotting...")
     
+    # Make plot data
+    #
     trace = go.Scatter(x = sumTimeSales['ORDER_DATE'], 
             y = sumTimeSales['TOTAL_LINE_AMT'])
     data = [trace]
     
-    url = py.plot(data, filename = 'templeAnalytics2015/Revenue_over_Time')
+    # Plot Layout
+    #
+    layout = go.Layout(
+            title='Product Revenue over Time',
+            xaxis=dict(
+                title='Date'
+            ),
+            yaxis=dict(
+                title='Revenue (USD $)'
+            )
+    )
+    
+    # Define the figure using playout and data. Plot After
+    #
+    fig = go.Figure(data=data, layout=layout)
+    url = py.plot(fig, filename = 'templeAnalytics2015/Revenue_over_Time')
     
     # Finish Plotting in data
     #   

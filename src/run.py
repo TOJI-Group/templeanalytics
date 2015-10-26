@@ -72,13 +72,12 @@ def main(argv):
 
     # Plot Social Media Sentiment
     #
-    #plotSentiment.plot(rawData)
+    plotSentiment.plot(rawData)
 
     # Plot Product Sales over time
     #
     #plotProductSalesTime.plot(rawData)
-    
-    plotRevTimebyCat.plot(rawData)
+    #plotRevTimebyCat.plot(rawData)
     # Exit Gracefully
     #
     print("Program Finished successfully.")
