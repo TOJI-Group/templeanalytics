@@ -1,3 +1,4 @@
 __all__ = ["plotRevenueCategory", "plotEmailSpendCategory", \
-        "plotSalesCategory", "plotMap"]
+        "plotSalesCategory", "plotMap", "plotProductSalesTime",
+        "plotSentiment", "plotRevTimebyCat"]
 

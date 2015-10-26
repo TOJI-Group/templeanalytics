@@ -68,7 +68,17 @@ def main(argv):
 
     # Plot the map
     #
-    plotMap.plot(rawData)
+    #plotMap.plot(rawData)
+
+    # Plot Social Media Sentiment
+    #
+    #plotSentiment.plot(rawData)
+
+    # Plot Product Sales over time
+    #
+    #plotProductSalesTime.plot(rawData)
+    
+    plotRevTimebyCat.plot(rawData)
     # Exit Gracefully
     #
     print("Program Finished successfully.")
