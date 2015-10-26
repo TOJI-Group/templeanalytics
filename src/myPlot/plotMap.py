@@ -80,6 +80,11 @@ def plot(rawData):
     #
     grouped['TOTAL_LINE_AMT'] = (np.round(grouped['TOTAL_LINE_AMT'],-2) \
             / 1000000)
+    
+    # Convert NAN values to zero
+    #
+    grouped.fillna(0)
+    
     # Pivot the categories to become column names
     #
     df = grouped.unstack(level=-1)
@@ -88,11 +93,6 @@ def plot(rawData):
     #
     df.columns = df.columns.get_level_values('PRODUCT_CATEGORY')
     logging.debug(df)
-
-    # Round to thousands
-    #
-    #np.round(df, -2)
-   # df.apply(int(np.round(-2)), axis=1)
 
     # Sum across the row and store in new column
     #
