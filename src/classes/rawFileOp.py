@@ -21,6 +21,7 @@ class rawFileOp():
         self.mediaList = pd.DataFrame
         self.emailCamp = pd.DataFrame
         self.socialList = pd.DataFrame
+        self.masterList = pd.DataFrame
 
     def loadCustomer(self):
         customer_filename = os.path.join(self.dataPath, \
@@ -127,4 +128,53 @@ class rawFileOp():
             logging.info("Skip Loading '%s'. Already Loaded.",
                     social_filename)
 
+    def loadMaster(self):
+        if self.masterList.empty:
+            # Use rawData to load in data required.
+            # example: rawData.loadOrder
+            self.loadOrder()
+            self.loadCustomer()
+            self.loadProduct()
+
+            # -------------------
+            # - REORGANIZE DATA - 
+            # -------------------
+            logging.info("Reorganizing data...")
+            
+            # Combine Necessary Tables 
+            # Use logging.debug(obj.DataFrame) to print contents of the
+            # resulting table
+            #
+           
+            # Combine Order Number and Customer Number
+            #
+            customerOrder = pd.merge(self.orderList, self.customerList, 
+                            left_on='CUSTOMER_NBR', 
+                            right_index=True, sort=False)
+
+            logging.debug(customerOrder)
+
+            # Combine Orders and Product Categories
+            #
+            self.masterList = pd.merge(customerOrder, self.productDescr,
+                             on='PRODUCT_NBR', sort=False)
+            
+            logging.debug(self.masterList)
+
+            # Finish Organizing in data
+            #
+            logging.info("Done reorganizing data")
+        else:
+            logging.info("Skip Loading masterList. Already Loaded.")       
+ 
+    def loadAll(self):
+        # load all data referenced by this classs
+        #
+        self.loadOrder()
+        self.loadCustomer()
+        self.loadProduct()
+        self.loadEmail()
+        self.loadAirtime()
+        self.loadSocial()
+        self.loadMaster()
 

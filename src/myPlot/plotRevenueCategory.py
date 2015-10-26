@@ -18,37 +18,12 @@ def plot(rawData):
  
     # For this plot we need customer, order, and product category data
     #
-    rawData.loadCustomer()
-    rawData.loadOrder()
-    rawData.loadProduct()
+    rawData.loadMaster()
 
     # Finish Loading in data
     #
     logging.info("Done loading data")
-
-    # -------------------
-    # - REORGANIZE DATA - 
-    # -------------------
-    logging.info("Reorganizing data...")
-    
-    # Combine Order Number and Customer Number
-    #
-    customerOrder = pd.merge(rawData.orderList, rawData.customerList, 
-            left_on='CUSTOMER_NBR', right_index=True, sort=False)
-    
-    logging.debug(customerOrder)
-    
-    # Combine Orders and Product Categories
-    #
-    customerOrderDescr = pd.merge(customerOrder, rawData.productDescr,
-             on='PRODUCT_NBR', sort=False)
-    
-    logging.debug(customerOrderDescr)
-
-    # Finish Organizing in data
-    #
-    logging.info("Done reorganizing data")
-    
+   
     # --------------
     # - QUERY DATA - 
     # --------------
@@ -56,7 +31,7 @@ def plot(rawData):
     
     # Create a sub-set of the data
     #
-    customSub = customerOrderDescr.loc[:,
+    customSub = rawData.masterList.loc[:,
             ['PRODUCT_CATEGORY', 'TOTAL_LINE_AMT']]
 
     # Create Multi-Index Dataset

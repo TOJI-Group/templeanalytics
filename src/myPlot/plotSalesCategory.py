@@ -34,19 +34,6 @@ def plot(rawData):
     #
     logging.info("Done loading data")
 
-    # -------------------
-    # - REORGANIZE DATA - 
-    # -------------------
-    logging.info("Reorganizing data...")
-    
-    # Combine Necessary Tables 
-    # Use logging.debug(obj.DataFrame) to print contents of the resulting table
-    #
-
-    # Finish Organizing in data
-    #
-    logging.info("Done reorganizing data")
-    
     # --------------
     # - QUERY DATA - 
     # --------------

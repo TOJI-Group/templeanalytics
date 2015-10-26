@@ -28,42 +28,11 @@ def plot(rawData):
  
     # Use rawData to load in data required.
     # example: rawData.loadOrder
-    rawData.loadOrder()
-    rawData.loadCustomer()
-    rawData.loadProduct()
+    rawData.loadMaster()
 
     # Finish Loading in data
     #
     logging.info("Done loading data")
-
-    # -------------------
-    # - REORGANIZE DATA - 
-    # -------------------
-    logging.info("Reorganizing data...")
-    
-    # Combine Necessary Tables 
-    # Use logging.debug(obj.DataFrame) to print contents of the resulting 
-    # table
-    #
-   
-    # Combine Order Number and Customer Number
-    #
-    customerOrder = pd.merge(rawData.orderList, rawData.customerList, 
-                    left_on='CUSTOMER_NBR', right_index=True, sort=False)
-
-    logging.debug(customerOrder)
-
-    # Combine Orders and Product Categories
-    #
-    customerOrderDescr = pd.merge(customerOrder, rawData.productDescr,
-                     on='PRODUCT_NBR', sort=False)
-    
-    logging.debug(customerOrderDescr)
-
-    # Finish Organizing in data
-    #
-    logging.info("Done reorganizing data")
-    
     # --------------
     # - QUERY DATA - 
     # --------------
@@ -72,7 +41,7 @@ def plot(rawData):
     # From the Table presumable created above, remove excess columns. Also
     # re-index a table to new column
     #
-    grouped = customerOrderDescr.loc[:,['STATE', \
+    grouped = rawData.masterList.loc[:,['STATE', \
             'PRODUCT_CATEGORY', 'TOTAL_LINE_AMT']]
     grouped = grouped.groupby(['STATE', 'PRODUCT_CATEGORY']).sum()
     
@@ -103,7 +72,7 @@ def plot(rawData):
     # Finish Organizing in data
     #        
     logging.info("Done querying data")
-
+    
     # -------------
     # - PLOT DATA - 
     # -------------
