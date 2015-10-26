@@ -63,7 +63,7 @@ def plot(rawData):
     
     # Delete non-applicable columns
     df = df.drop(['PUBLIC RELATION','App/Accss Event','IQVC Divisional',\
-            'License Hardgds','PUBLIC RELATION','Returns','Textile/Furnit','Collectibles','Costume Jewelry','Entertainment','Gift Cards','Health', 'Electronics','Fun & Leisure', 'Housewares'],
+            'License Hardgds','PUBLIC RELATION','Returns','Textile/Furnit','Collectibles','Costume Jewelry','Entertainment','Gift Cards','Health', 'Electronics','Fun & Leisure', 'Housewares','Jewelry','Accessories'],
             axis=1)
 
     logging.debug(df)
