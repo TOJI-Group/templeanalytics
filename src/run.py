@@ -34,7 +34,6 @@ def main(argv):
     # Call function to read in csv files
     #
     rawData = rawFileOp();
-
     # rawFileOp class loads in the raw csv files.
     # Functions to loading in different data:
     #    - loadCustomer = customer_master.csv
@@ -43,6 +42,8 @@ def main(argv):
     #    - loadAirtime  = product_airtime.csv
     #    - loadEmail    = email_campaign.csv
     #    - loadSocial   = social.csv
+    #    - loadMaster   = loadCustomer, loadOrder, loadProduct and store
+    #                       in one table
     # Running any of the above functions load data into the following global
     # variables.
     # Variables containing importated data:
@@ -52,7 +53,9 @@ def main(argv):
     #    - mediaList    = product_airtime.csv
     #    - emailCamp    = email_campaign.csv
     #    - socialList   = social.csv
-    
+    #    - masterList   = loadCustomer, loadOrder, loadProduct in one table
+
+
     # From module plot, plot the desired plots
     # Create plot of revenue vs product category
     #
@@ -77,7 +80,7 @@ def main(argv):
     # Plot Product Sales over time
     #
     #plotProductSalesTime.plot(rawData)
-    plotRevTimebyCat.plot(rawData)
+    #plotRevTimebyCat.plot(rawData)
     # Exit Gracefully
     #
     print("Program Finished successfully.")
