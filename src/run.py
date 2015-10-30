@@ -89,7 +89,12 @@ def main(argv):
     # Plot Product Sales over time
     #
     #plotProductSalesTime.plot(rawData)
+<<<<<<< HEAD
+    #    plotRevTimebyCat.plot(rawData)
+    plotRevTimebyCat_02.plot(rawData)
+=======
     #plotRevTimebyCat.plot(rawData)
+>>>>>>> refs/remotes/origin/devel
     # Exit Gracefully
     #
     print("Program Finished successfully.")
