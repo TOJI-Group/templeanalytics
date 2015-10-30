@@ -1,10 +1,9 @@
 # Temple Analytics 2015  [Team TONI]
-[Compeition Link][]
 v0.03  
+[Compeition Link][]
 Group Compeition Webiste: www.tonianalytics.me
 
 Team Members: Devin Trejo, James Novino, Tyler Olivieri, Robert Irwin
-
 
 ### Release Additions:
 - Team name change from TOJI -> TONI for conistent relationship to last name
@@ -16,7 +15,7 @@ of team members
 - load data in now handled by rawFileOp class.
 - loadMaster now combines orderList, customerList, and product category lists.
 - Added more functionality in rawFileOp class. (Ex. now save a local copy of
-masterList to master.csv in data folder. 
+masterList to master.csv in data folder)
 
 ## Project Files
 ### Main Program [`run.py`][]
