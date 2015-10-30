@@ -1,8 +1,22 @@
-# Temple Analytics 2015  [Team TOJI]
+# Temple Analytics 2015  [Team TONI]
 [Compeition Link][]
-v0.02
+v0.03
+
 
 Team Members: Devin Trejo, James Novino, Tyler Olivieri, Robert Irwin
+
+
+Release Additions:
+- Team name change from TOJI -> TONI for conistent relationship to last name
+of team members
+- Added plotMap
+- Added plotRevTime which plots top three categories best revenue
+- Added plotSentiment. Overall comment histogram (barplot)
+- Data Statistics on best selling item and host
+- load data in now handled by rawFileOp class.
+- loadMaster now combines orderList, customerList, and product category lists.
+- Added more functionality in rawFileOp class. (Ex. now save a local copy of
+masterList to master.csv in data folder. 
 
 ## Project Files
 ### Main Program [`run.py`][]
