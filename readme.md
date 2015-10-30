@@ -1,12 +1,12 @@
 # Temple Analytics 2015  [Team TONI]
 [Compeition Link][]
-v0.03 
+v0.03  
 Group Compeition Webiste: www.tonianalytics.me
 
 Team Members: Devin Trejo, James Novino, Tyler Olivieri, Robert Irwin
 
 
-Release Additions:
+### Release Additions:
 - Team name change from TOJI -> TONI for conistent relationship to last name
 of team members
 - Added plotMap
