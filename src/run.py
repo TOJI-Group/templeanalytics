@@ -5,8 +5,13 @@ import argparse
 import logging
 import collections
 import numpy as np
+
 # Data Class 
 from classes.rawFileOp import rawFileOp
+
+# Statstical Analysis functions
+import dataStats
+
 # Plotting Functions
 from myPlot import *
 
@@ -55,6 +60,10 @@ def main(argv):
     #    - socialList   = social.csv
     #    - masterList   = loadCustomer, loadOrder, loadProduct in one table
 
+    # Run some statistical anylsis on data
+    #
+    dataStats.printBestSeller(rawData)
+    dataStats.printHostStats(rawData)
 
     # From module plot, plot the desired plots
     # Create plot of revenue vs product category
@@ -71,7 +80,7 @@ def main(argv):
 
     # Plot the map
     #
-    plotMap.plot(rawData)
+    #plotMap.plot(rawData)
 
     # Plot Social Media Sentiment
     #
