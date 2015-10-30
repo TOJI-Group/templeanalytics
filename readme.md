@@ -1,7 +1,7 @@
 # Temple Analytics 2015  [Team TONI]
 [Compeition Link][]
-v0.03
-Webiste: www.tonianalytics.me
+v0.03 
+Group Compeition Webiste: www.tonianalytics.me
 
 Team Members: Devin Trejo, James Novino, Tyler Olivieri, Robert Irwin
 
