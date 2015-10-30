@@ -5,8 +5,13 @@ import argparse
 import logging
 import collections
 import numpy as np
+
 # Data Class 
 from classes.rawFileOp import rawFileOp
+
+# Statstical Analysis functions
+import dataStats
+
 # Plotting Functions
 from myPlot import *
 
@@ -34,7 +39,6 @@ def main(argv):
     # Call function to read in csv files
     #
     rawData = rawFileOp();
-
     # rawFileOp class loads in the raw csv files.
     # Functions to loading in different data:
     #    - loadCustomer = customer_master.csv
@@ -43,6 +47,8 @@ def main(argv):
     #    - loadAirtime  = product_airtime.csv
     #    - loadEmail    = email_campaign.csv
     #    - loadSocial   = social.csv
+    #    - loadMaster   = loadCustomer, loadOrder, loadProduct and store
+    #                       in one table
     # Running any of the above functions load data into the following global
     # variables.
     # Variables containing importated data:
@@ -52,7 +58,13 @@ def main(argv):
     #    - mediaList    = product_airtime.csv
     #    - emailCamp    = email_campaign.csv
     #    - socialList   = social.csv
-    
+    #    - masterList   = loadCustomer, loadOrder, loadProduct in one table
+
+    # Run some statistical anylsis on data
+    #
+    dataStats.printBestSeller(rawData)
+    dataStats.printHostStats(rawData)
+
     # From module plot, plot the desired plots
     # Create plot of revenue vs product category
     #
@@ -77,8 +89,12 @@ def main(argv):
     # Plot Product Sales over time
     #
     #plotProductSalesTime.plot(rawData)
+<<<<<<< HEAD
     #    plotRevTimebyCat.plot(rawData)
     plotRevTimebyCat_02.plot(rawData)
+=======
+    #plotRevTimebyCat.plot(rawData)
+>>>>>>> refs/remotes/origin/devel
     # Exit Gracefully
     #
     print("Program Finished successfully.")

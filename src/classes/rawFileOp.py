@@ -129,41 +129,70 @@ class rawFileOp():
                     social_filename)
 
     def loadMaster(self):
+        master_filename = os.path.join(self.dataPath, \
+                "qvc", "master.csv")
         if self.masterList.empty:
-            # Use rawData to load in data required.
-            # example: rawData.loadOrder
-            self.loadOrder()
-            self.loadCustomer()
-            self.loadProduct()
-
-            # -------------------
-            # - REORGANIZE DATA - 
-            # -------------------
-            logging.info("Reorganizing data...")
-            
-            # Combine Necessary Tables 
-            # Use logging.debug(obj.DataFrame) to print contents of the
-            # resulting table
+            # Check if master.csv alread exsists
             #
-           
-            # Combine Order Number and Customer Number
-            #
-            customerOrder = pd.merge(self.orderList, self.customerList, 
-                            left_on='CUSTOMER_NBR', 
-                            right_index=True, sort=False)
+            if os.path.isfile(master_filename):
+                # Repeat read in data for orders.
+                #
+                logging.info("Opening File: %s", master_filename)
+                self.masterList = pd.read_csv(master_filename, \
+                        parse_dates = True)
+                logging.debug(self.masterList)
 
-            logging.debug(customerOrder)
+                # Close file
+                #
+                logging.info("Closing File: %s", master_filename)           
+            else:
+                logging.info("Generating new MasterList...")
+                # Use rawData to load in data required.
+                # example: rawData.loadOrder
+                self.loadOrder()
+                self.loadCustomer()
+                self.loadProduct()
 
-            # Combine Orders and Product Categories
-            #
-            self.masterList = pd.merge(customerOrder, self.productDescr,
-                             on='PRODUCT_NBR', sort=False)
-            
-            logging.debug(self.masterList)
+                # -------------------
+                # - REORGANIZE DATA - 
+                # -------------------
+                logging.info("Reorganizing data...")
+                
+                # Combine Necessary Tables 
+                # Use logging.debug(obj.DataFrame) to print contents of the
+                # resulting table
+                #
+               
+                # Combine Order Number and Customer Number
+                #
+                customerOrder = pd.merge(self.orderList, self.customerList, 
+                                left_on='CUSTOMER_NBR', 
+                                right_index=True, sort=False)
 
-            # Finish Organizing in data
-            #
-            logging.info("Done reorganizing data")
+                logging.debug(customerOrder)
+
+                # Combine Orders and Product Categories
+                #
+                self.masterList = pd.merge(customerOrder, self.productDescr,
+                                 on='PRODUCT_NBR', sort=False)
+                
+                logging.debug(self.masterList)
+
+                # Finish Organizing in data
+                #
+                logging.info("Done reorganizing data")
+                
+                # Save master list for future operations
+                #
+                logging.info("Saving master list to '%s'", master_filename)
+
+                # Save MasterList to file
+                #
+                self.masterList.to_csv(master_filename)
+
+                # Finish Saving MasterList
+                #
+                logging.info("Succesfully saved new MasterList")
         else:
             logging.info("Skip Loading masterList. Already Loaded.")       
  
